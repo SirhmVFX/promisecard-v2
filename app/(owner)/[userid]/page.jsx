@@ -105,7 +105,7 @@ function Owner({ params }) {
             {giftItems.map((gift) => (
               <div
                 className={`${
-                  gift.bg ? "${gift.bg}" : "bg-gray-50"
+                  gift.bg ? `${gift.bg}` : "bg-gray-50"
                 } p-4 flex flex-col items-center rounded-lg relative`}
               >
                 <div
