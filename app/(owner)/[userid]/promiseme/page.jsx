@@ -18,10 +18,9 @@ export const PromisePage = ({ params }) => {
     const fetchData = async () => {
       const user = JSON.parse(localStorage.getItem("user"));
 
-      if (user && user.username === params.userid) {
-        console.log(user.username, params.id);
-        router.push(`/${user.username}`);
-      } else {
+      if (user?.username === params.userid) {
+        router.push(`/${params.userid}`);
+      } else if (!user || user.username !== params.userid) {
         try {
           const docRef = doc(db, "gifts", params.userid);
           const docSnap = await getDoc(docRef);
@@ -31,13 +30,16 @@ export const PromisePage = ({ params }) => {
             setPromiseGift(giftMe.gifft);
           } else {
             router.push(`/signin`);
+            console.log("Gifts not found");
           }
+          console.log(promiseGift);
         } catch (error) {
           console.error("Error fetching gifts:", error);
         }
       }
     };
     fetchData();
+    console.log(promiseGift);
   }, [params.userid, router]);
 
   const [addedStatus, setAddedStatus] = useState(() => {
@@ -80,7 +82,7 @@ export const PromisePage = ({ params }) => {
 
   return (
     <>
-      <section className="  p-2 flex flex-col  items-center bg-[#FFFDFA] h-screen">
+      <section className="  p-2 flex flex-col w-full md:w-2/4 items-center bg-[#FFFDFA] h-screen">
         <div className="py-14 text-center">
           <h1 className="text-4xl font-semibold text-black font-heading">
             Promise Card
@@ -101,7 +103,7 @@ export const PromisePage = ({ params }) => {
             </Link>
           </div>
 
-          <div className="grid grid-cols-2 py-4 gap-4">
+          <div className="py-4 gap-4 w-full">
             {promiseGift && (
               <div className="grid grid-cols-2 py-4 gap-4">
                 {promiseGift.map((gift) => (
@@ -117,19 +119,21 @@ export const PromisePage = ({ params }) => {
                     }}
                   >
                     <Image
-                      src={gift.img}
-                      alt={gift.title}
+                      src={gift.file}
+                      alt={gift.name}
                       width={60}
                       height={60}
                     />
-                    <h1>{gift.title}</h1>
+                    <h1>{gift.name}</h1>
                   </div>
                 ))}
               </div>
             )}
           </div>
         </div>
-        <button onClick={handleClick}>give</button>
+        <button className="bg-[#c015a4]" onClick={handleClick}>
+          give
+        </button>
       </section>
     </>
   );
