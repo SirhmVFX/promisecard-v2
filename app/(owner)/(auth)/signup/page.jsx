@@ -134,7 +134,7 @@ const Signup = () => {
                   clicked ? "bg-[#ffaff2]" : "bg-[#C015A4]"
                 } button`}
               >
-                {clicked ? "Creating account, please wait..." : "Sign In"}
+                {clicked ? "Creating account, please wait..." : "Sign Up"}
               </button>
               <p className="text-black text-lg text-center my-4">
                 Already have an account?

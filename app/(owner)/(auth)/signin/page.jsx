@@ -26,7 +26,7 @@ const Signin = () => {
 
       if (docSnap.exists()) {
         const userData = docSnap.data();
-        console.log("Document data:", userData);
+        console.log("Document data:", docSnap.data());
 
         if (userData.password === password) {
           setSignedIn(true);

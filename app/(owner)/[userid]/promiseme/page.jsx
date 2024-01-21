@@ -4,13 +4,41 @@ import { defaultgifts } from "@/data/data";
 import Link from "next/link";
 import { PiHandHeartBold } from "react-icons/pi";
 import Image from "next/image";
-
 import { useRouter } from "next/navigation";
-
 import { useState, useEffect } from "react";
 
-export const PromisePage = ({ user }) => {
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "@/app/firebase/config";
+
+export const PromisePage = ({ params }) => {
+  const [promiseGift, setPromiseGift] = useState(null);
   const router = useRouter();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const user = JSON.parse(localStorage.getItem("user"));
+
+      if (user && user.username === params.userid) {
+        console.log(user.username, params.id);
+        router.push(`/${user.username}`);
+      } else {
+        try {
+          const docRef = doc(db, "gifts", params.userid);
+          const docSnap = await getDoc(docRef);
+
+          if (docSnap.exists()) {
+            const giftMe = docSnap.data();
+            setPromiseGift(giftMe.gifft);
+          } else {
+            router.push(`/signin`);
+          }
+        } catch (error) {
+          console.error("Error fetching gifts:", error);
+        }
+      }
+    };
+    fetchData();
+  }, [params.userid, router]);
 
   const [addedStatus, setAddedStatus] = useState(() => {
     const savedAddedStatus =
@@ -74,25 +102,34 @@ export const PromisePage = ({ user }) => {
           </div>
 
           <div className="grid grid-cols-2 py-4 gap-4">
-            {defaultgifts.map((gift) => (
-              <div
-                key={gift.id}
-                className={`${
-                  addedStatus[gift.id]
-                    ? `${gift.bg} text-black p-4 rounded-lg flex flex-col items-center border-2 border-primary`
-                    : `${gift.bg} text-black p-4 rounded-lg flex flex-col items-center`
-                }`}
-                onClick={() => {
-                  selectGift(gift);
-                }}
-              >
-                <Image src={gift.img} alt={gift.title} width={60} height={60} />
-                <h1>{gift.title}</h1>
+            {promiseGift && (
+              <div className="grid grid-cols-2 py-4 gap-4">
+                {promiseGift.map((gift) => (
+                  <div
+                    key={gift.id}
+                    className={`${
+                      addedStatus[gift.id]
+                        ? `${gift.bg} text-black p-4 rounded-lg flex flex-col items-center border-2 border-primary`
+                        : `${gift.bg} text-black p-4 rounded-lg flex flex-col items-center`
+                    }`}
+                    onClick={() => {
+                      selectGift(gift);
+                    }}
+                  >
+                    <Image
+                      src={gift.img}
+                      alt={gift.title}
+                      width={60}
+                      height={60}
+                    />
+                    <h1>{gift.title}</h1>
+                  </div>
+                ))}
               </div>
-            ))}
+            )}
           </div>
         </div>
-        <button>give</button>
+        <button onClick={handleClick}>give</button>
       </section>
     </>
   );
