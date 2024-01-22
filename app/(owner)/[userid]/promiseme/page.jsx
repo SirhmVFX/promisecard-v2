@@ -111,8 +111,12 @@ export const PromisePage = ({ params }) => {
                     key={gift.id}
                     className={`${
                       addedStatus[gift.id]
-                        ? `${gift.bg} text-black p-4 rounded-lg flex flex-col items-center border-2 border-primary`
-                        : `${gift.bg} text-black p-4 rounded-lg flex flex-col items-center`
+                        ? `${
+                            gift.bg ? gift.bg : "bg-grey-50"
+                          } text-black p-4 rounded-lg flex flex-col items-center border-2 border-primary border-[#c015a4]`
+                        : `${
+                            gift.bg ? gift.bg : "bg-grey-50"
+                          } text-black p-4 rounded-lg flex flex-col items-center`
                     }`}
                     onClick={() => {
                       selectGift(gift);

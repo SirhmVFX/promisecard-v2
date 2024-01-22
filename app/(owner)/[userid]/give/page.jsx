@@ -8,6 +8,7 @@ import {
   addDoc,
   collection,
   doc,
+  getDoc,
   serverTimestamp,
   setDoc,
 } from "firebase/firestore";
@@ -28,27 +29,39 @@ const Give = ({ params }) => {
 
   const handlePromise = async (e) => {
     e.preventDefault();
+    setClicked(true);
 
-    try {
-      await addDoc(collection(db, "promisedGifts"), {
-        giverName,
-        date,
-        saidGift,
-        curenncy,
-        amount,
-        promisedUser,
-        timeStamp: serverTimestamp(),
-      });
+    const docRef = doc(db, "users", params.userid);
+    const docSnapUser = await getDoc(docRef);
 
-      localStorage.removeItem("gifts");
-      localStorage.removeItem("addedStatus");
-      setGivername("");
-      setDate("");
-      setCurrency("");
-      setAmount("");
-    } catch (error) {
+    if (docSnapUser.exists()) {
+      try {
+        await addDoc(collection(db, "promisedGifts"), {
+          giverName,
+          date,
+          saidGift,
+          curenncy,
+          amount,
+          promisedUser,
+          timeStamp: serverTimestamp(),
+        });
+
+        localStorage.removeItem("gifts");
+        localStorage.removeItem("addedStatus");
+        setGivername("");
+        setDate("");
+        setCurrency("");
+        setAmount("");
+
+        setTimeout(() => {
+          router.push(`/${params.userid}/gifted`);
+        }, 2000);
+      } catch (error) {
+        console.log(error);
+        setError(false);
+      }
+    } else {
       console.log(error);
-      setError(false);
     }
   };
 
@@ -98,7 +111,8 @@ const Give = ({ params }) => {
         {error ? (
           <div className="p-4 border rounded-lg border-red-600 text-red-600 mb-4">
             <p>
-              Unable to promise this {params.userid} a gift. Please try again
+              Unable to promise this {params.userid} a gift. This user doesn't
+              exist
             </p>
           </div>
         ) : (
@@ -114,6 +128,7 @@ const Give = ({ params }) => {
               <input
                 type="text"
                 onChange={(e) => setGivername(e.target.value)}
+                required
                 placeholder="Wetin be your name boss"
                 className="outline-none text-black bg-transparent"
               />
@@ -147,6 +162,7 @@ const Give = ({ params }) => {
             <div className="flex justify-between p-4 bg-[#F7F3F3] border rounded-2xl mt-2">
               <input
                 type="date"
+                required
                 placeholder="when boss"
                 onChange={(e) => setDate(e.target.value)}
                 className="outline-none text-black bg-transparent"
@@ -204,7 +220,9 @@ const Give = ({ params }) => {
               {selectedGift.map((gift) => (
                 <div
                   key={gift.id}
-                  className="bg-green-300 flex flex-col items-center p-4 relative rounded-lg"
+                  className={`${
+                    gift.bg ? `${gift.bg}` : "bg-gray-50"
+                  } flex flex-col items-center p-4 relative rounded-lg`}
                 >
                   <div
                     className="bg-white rounded-full absolute right-4"
@@ -294,14 +312,18 @@ const Give = ({ params }) => {
                 </option>
               </select>
               <input
-                type="text"
+                type="number"
                 placeholder="How much you go like give me"
                 onChange={(e) => setAmount(e.target.value)}
                 className="outline-none text-black bg-transparent w-full"
               />
             </div>
           </div>
-          <button className="w-full py-3 rounded-xl bg-[#c015a4]">
+          <button
+            className={`w-full py-3 rounded-xl  ${
+              clicked ? "bg-[#ffaff2]" : "bg-[#c015a4]"
+            }`}
+          >
             {clicked ? "Sending Promise" : `Promise ${params.userid}`}
           </button>
         </form>
