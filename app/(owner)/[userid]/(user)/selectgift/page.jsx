@@ -150,7 +150,7 @@ function SelectGift({ params }) {
           ))}
         </div>
 
-        <div className="flex gap-2 items-center absolute w-3/4 justify-center bottom-28 z-50">
+        <div className="flex gap-2 items-center absolute w-3/4 justify-center bottom-40 z-50">
           <button
             className={`py-3 w-2/4 rounded-full ${
               clicked ? "bg-[#ffaff2]" : "bg-[#C015A4]"
