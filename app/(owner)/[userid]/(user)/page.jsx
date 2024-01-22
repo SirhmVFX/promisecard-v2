@@ -132,7 +132,7 @@ function Owner({ params }) {
             ))}
           </div>
 
-          <div className="absolute bottom-36 ">
+          <div className="absolute bottom-20 z-50 ">
             <Link
               href={`${params.userid}/selectgift`}
               className="bg-[#c015a4] py-3 px-12 rounded-full"
