@@ -1,15 +1,36 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect } from "react";
+
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "@/app/firebase/config";
+import { useRouter } from "next/navigation";
 
 const Profile = ({ params }) => {
   const user = params.userid;
+  const router = useRouter();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const docRef = doc(db, "users", user);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        console.log("Document data:", docSnap.data());
+      } else {
+        router.push("/signin");
+      }
+    };
+    fetchData();
+  }, []);
   return (
     <>
       <section className="md:w-2/4 mx-auto p-6">
         <div className="flex justify-between items-center">
           <h1 className="text-black text-2xl p-4 ">Profile</h1>
           <Link
-            href={`${user}/promisedgift`}
+            href={`/${user}/promisedgifts`}
             className="text-[#C015A4] font-bold text-lg"
           >
             Promised Gifts

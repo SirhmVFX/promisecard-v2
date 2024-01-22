@@ -47,7 +47,7 @@ const Navigation = () => {
         Home
       </Link>
       <Link
-        href={`${currentUser}/profile`}
+        href={`/${currentUser}/profile`}
         className="flex flex-col items-center p-4 font-bold"
       >
         <svg
