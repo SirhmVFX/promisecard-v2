@@ -5,6 +5,7 @@ function RootLayout({ children }) {
     <>
       <html>
         <body>{children}</body>
+        <Navigation />
       </html>
     </>
   );
