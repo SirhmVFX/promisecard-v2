@@ -111,8 +111,8 @@ const Give = ({ params }) => {
         {error ? (
           <div className="p-4 border rounded-lg border-red-600 text-red-600 mb-4">
             <p>
-              Unable to promise this {params.userid} a gift. This user doesn't
-              exist
+              Unable to promise this {params.userid} a gift. This user
+              doesn&apos;t exist
             </p>
           </div>
         ) : (
@@ -121,7 +121,7 @@ const Give = ({ params }) => {
         <form onSubmit={handlePromise}>
           <div className="pb-14">
             <label htmlFor="" className="text-black text-xl font-semibold">
-              Giver's Name
+              Giver&apos;s Name
             </label>
 
             <div className="flex justify-between p-4 bg-[#F7F3F3] border rounded-2xl mt-2">

@@ -20,7 +20,7 @@ const Promisemade = ({ params }) => {
       }
     };
     fetchData();
-  }, []);
+  }, [params.userid, router]);
   const user = params.userid;
   return (
     <>

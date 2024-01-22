@@ -124,7 +124,7 @@ const Signin = () => {
               {clicked ? "Signing you in, please wait.." : "Sign In"}
             </button>
             <p className="text-black text-lg text-center my-4">
-              Don't have an account?
+              Dont have an account?
               <Link
                 href="/signup"
                 className="text-xl text-[#C015A4] font-medium"

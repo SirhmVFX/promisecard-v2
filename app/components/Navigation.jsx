@@ -20,7 +20,7 @@ const Navigation = () => {
       router.push("/signin");
     }
     console.log(currentUser);
-  }, [router]);
+  }, [router, currentUser]);
   return (
     <div className="flex justify-around bg-[#F5F5F5] text-black w-full absolute bottom-0 ">
       <Link

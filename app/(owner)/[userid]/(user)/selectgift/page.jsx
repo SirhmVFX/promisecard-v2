@@ -134,6 +134,7 @@ function SelectGift({ params }) {
         <div>
           {defaultgifts.map((gift) => (
             <div
+              key={gift.id}
               className={`flex gap-2 items-center py-4 ${
                 addedStatus[gift.id] ? "border-t border-b border-[#C015a4]" : ""
               }`}

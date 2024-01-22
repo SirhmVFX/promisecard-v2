@@ -43,7 +43,7 @@ const Promisedgifts = ({ params }) => {
       }
     };
     fetchData();
-  }, []);
+  }, [user]);
   return (
     <>
       <section className="md:w-2/4 mx-auto p-6">
@@ -117,7 +117,9 @@ const Promisedgifts = ({ params }) => {
                 </p>
                 <div className="flex gap-2">
                   {gift.saidGift.map((each) => (
-                    <p className="text-gray-400">{each.name}, </p>
+                    <p key={each.id} className="text-gray-400">
+                      {each.name},{" "}
+                    </p>
                   ))}
                 </div>
                 <div className="flex gap-2">

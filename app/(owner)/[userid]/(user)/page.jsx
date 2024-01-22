@@ -39,7 +39,7 @@ function Owner({ params }) {
     };
 
     fetchData();
-  }, []);
+  }, [router]);
 
   const handleRemove = async (theGift) => {
     try {
@@ -104,6 +104,7 @@ function Owner({ params }) {
           <div className="grid grid-cols-2 gap-4 w-full">
             {giftItems.map((gift) => (
               <div
+                key={gift.id}
                 className={`${
                   gift.bg ? `${gift.bg}` : "bg-gray-50"
                 } p-4 flex flex-col items-center rounded-lg relative`}

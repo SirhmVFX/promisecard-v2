@@ -23,7 +23,7 @@ const Profile = ({ params }) => {
       }
     };
     fetchData();
-  }, []);
+  }, [router, user]);
   return (
     <>
       <section className="md:w-2/4 mx-auto p-6">
@@ -95,11 +95,11 @@ const Profile = ({ params }) => {
               </label>
 
               <div className="bg-[#F7F3F3] border border-[#C2BABA] rounded-lg p-4 outline-none text-[#888B89] text-lg">
-                Hey, it's {params.userid} ... your promise could be the sweet
-                touch i need right now. Imagine your promise as a little gift,
-                bringing us closer to making my dream come true. Let's unwrap
-                the joy of promises together. Your commitment means the world!
-                🎁✨
+                Hey, it&apos;s {params.userid} ... your promise could be the
+                sweet touch i need right now. Imagine your promise as a little
+                gift, bringing us closer to making my dream come true.
+                Let&apos;s unwrap the joy of promises together. Your commitment
+                means the world! 🎁✨
               </div>
             </div>
             <div className="flex justify-between p-4 bg-[#F7F3F3] border rounded-2xl mb-4">
