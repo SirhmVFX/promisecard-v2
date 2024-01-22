@@ -5,7 +5,7 @@ import Image from "next/image";
 
 import { useState, useEffect } from "react";
 
-const Give = () => {
+const Give = ({ params }) => {
   const selectedGift = JSON.parse(localStorage.getItem("gifts")) || [];
   const [addedStatus, setAddedStatus] = useState({});
 
@@ -30,22 +30,24 @@ const Give = () => {
     <>
       <section className="md:w-2/4 p-4 mx-auto">
         <div className="pb-14">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-          >
-            <path
-              d="M15.0901 19.92L8.57009 13.4C7.80009 12.63 7.80009 11.37 8.57009 10.6L15.0901 4.08"
-              stroke="#292D32"
-              stroke-width="1.5"
-              stroke-miterlimit="10"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
+          <Link href={`/${params.userid}/promiseme`}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <path
+                d="M15.0901 19.92L8.57009 13.4C7.80009 12.63 7.80009 11.37 8.57009 10.6L15.0901 4.08"
+                stroke="#292D32"
+                stroke-width="1.5"
+                stroke-miterlimit="10"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </Link>
         </div>
 
         <form>
@@ -166,17 +168,18 @@ const Give = () => {
                     </svg>
                   </div>
                   <Image
-                    src={gift.img}
-                    alt={gift.title}
+                    src={gift.file}
+                    alt={gift.name}
                     width={50}
                     height={50}
                   />
-                  <h1 className="text-black">{gift.title}</h1>
+                  <h1 className="text-black">{gift.name}</h1>
                 </div>
               ))}
               <Link
-                href="/addgift"
-                className="text-black bg-[#EDEFEE] flex items-center justify-center flex-col rounded-lg"
+                href={`/${params.userid}/promiseme`}
+                className="text-black p-4 bg-[#EDEFEE] flex items-center
+                justify-center flex-col rounded-lg"
               >
                 <div>
                   <svg
@@ -240,7 +243,9 @@ const Give = () => {
               />
             </div>
           </div>
-          <button>submit</button>
+          <button className="w-full py-3 rounded-xl bg-[#c015a4]">
+            submit
+          </button>
         </form>
       </section>
     </>

@@ -77,12 +77,12 @@ export const PromisePage = ({ params }) => {
   };
 
   function handleClick() {
-    router.push("/give");
+    router.push("give");
   }
 
   return (
     <>
-      <section className="  p-2 flex flex-col w-full md:w-2/4 items-center bg-[#FFFDFA] h-screen">
+      <section className="  p-2 flex flex-col w-full md:w-3/4 mx-auto items-center bg-[#FFFDFA] h-screen relative">
         <div className="py-14 text-center">
           <h1 className="text-4xl font-semibold text-black font-heading">
             Promise Card
@@ -131,7 +131,10 @@ export const PromisePage = ({ params }) => {
             )}
           </div>
         </div>
-        <button className="bg-[#c015a4]" onClick={handleClick}>
+        <button
+          className="bg-[#c015a4] py-3 px-8 rounded-full absolute bottom-10 "
+          onClick={handleClick}
+        >
           give
         </button>
       </section>

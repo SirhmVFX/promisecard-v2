@@ -106,7 +106,7 @@ const Signin = () => {
               <IoIosEyeOff className="text-3xl md:text-4xl text-neutral-500 ml-1 mr-2" />
             </div>
           </div>
-          <div className="flex justify-end py-4">
+          <div className="flex justify-end py-4 ">
             <Link
               href="/forgotpassword"
               className="text-[#C015A4] font-semibold text-lg"
@@ -114,12 +114,12 @@ const Signin = () => {
               Forgot Password?
             </Link>
           </div>
-          <div className="mt-12">
+          <div className="mt-12 flex flex-col w-full">
             <button
               type="submit"
-              className={` text-white w-full ${
+              className={`  py-3 rounded-xl text-white ${
                 clicked ? "bg-[#ffaff2]" : "bg-[#C015A4]"
-              } `}
+              }  `}
             >
               {clicked ? "Signing you in, please wait.." : "Sign In"}
             </button>
