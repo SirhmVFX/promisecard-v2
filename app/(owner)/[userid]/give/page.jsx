@@ -4,8 +4,54 @@ import Link from "next/link";
 import Image from "next/image";
 
 import { useState, useEffect } from "react";
+import {
+  addDoc,
+  collection,
+  doc,
+  serverTimestamp,
+  setDoc,
+} from "firebase/firestore";
+import { db } from "@/app/firebase/config";
+
+import { useRouter } from "next/navigation";
 
 const Give = ({ params }) => {
+  const [giverName, setGivername] = useState("");
+  const [date, setDate] = useState("");
+  const saidGift = JSON.parse(localStorage.getItem("gifts")) || [];
+  const [curenncy, setCurrency] = useState("");
+  const [amount, setAmount] = useState("");
+  const promisedUser = params.userid;
+  const [clicked, setClicked] = useState(false);
+  const [error, setError] = useState(false);
+  const router = useRouter();
+
+  const handlePromise = async (e) => {
+    e.preventDefault();
+
+    try {
+      await addDoc(collection(db, "promisedGifts"), {
+        giverName,
+        date,
+        saidGift,
+        curenncy,
+        amount,
+        promisedUser,
+        timeStamp: serverTimestamp(),
+      });
+
+      localStorage.removeItem("gifts");
+      localStorage.removeItem("addedStatus");
+      setGivername("");
+      setDate("");
+      setCurrency("");
+      setAmount("");
+    } catch (error) {
+      console.log(error);
+      setError(false);
+    }
+  };
+
   const selectedGift = JSON.parse(localStorage.getItem("gifts")) || [];
   const [addedStatus, setAddedStatus] = useState({});
 
@@ -49,8 +95,16 @@ const Give = ({ params }) => {
             </svg>
           </Link>
         </div>
-
-        <form>
+        {error ? (
+          <div className="p-4 border rounded-lg border-red-600 text-red-600 mb-4">
+            <p>
+              Unable to promise this {params.userid} a gift. Please try again
+            </p>
+          </div>
+        ) : (
+          ""
+        )}
+        <form onSubmit={handlePromise}>
           <div className="pb-14">
             <label htmlFor="" className="text-black text-xl font-semibold">
               Giver's Name
@@ -59,6 +113,7 @@ const Give = ({ params }) => {
             <div className="flex justify-between p-4 bg-[#F7F3F3] border rounded-2xl mt-2">
               <input
                 type="text"
+                onChange={(e) => setGivername(e.target.value)}
                 placeholder="Wetin be your name boss"
                 className="outline-none text-black bg-transparent"
               />
@@ -92,7 +147,8 @@ const Give = ({ params }) => {
             <div className="flex justify-between p-4 bg-[#F7F3F3] border rounded-2xl mt-2">
               <input
                 type="date"
-                placeholder="Wetin be your name boss"
+                placeholder="when boss"
+                onChange={(e) => setDate(e.target.value)}
                 className="outline-none text-black bg-transparent"
               />
               <svg
@@ -205,7 +261,7 @@ const Give = ({ params }) => {
                     />
                   </svg>
                 </div>
-                <p>add gift</p>
+                <p>Add gift</p>
               </Link>
             </div>
           </div>
@@ -218,33 +274,35 @@ const Give = ({ params }) => {
               <select
                 name=""
                 id=""
+                onChange={(e) => setCurrency(e.target.value)}
                 className="text-black bg-[#E4E2E4] py-2 px-4 rounded-lg  outline-none"
               >
-                <option className="text-sm" value="">
+                <option className="text-sm" value="NGN">
                   NGN
                 </option>
-                <option className="text-sm" value="">
+                <option className="text-sm" value="USD">
                   USD
                 </option>
-                <option className="text-sm" value="">
+                <option className="text-sm" value="EUR">
                   EUR
                 </option>
-                <option className="text-sm" value="">
+                <option className="text-sm" value="CAD">
                   CAD
                 </option>
-                <option className="text-sm" value="">
+                <option className="text-sm" value="GBP">
                   GBP
                 </option>
               </select>
               <input
                 type="text"
                 placeholder="How much you go like give me"
+                onChange={(e) => setAmount(e.target.value)}
                 className="outline-none text-black bg-transparent w-full"
               />
             </div>
           </div>
           <button className="w-full py-3 rounded-xl bg-[#c015a4]">
-            submit
+            {clicked ? "Sending Promise" : `Promise ${params.userid}`}
           </button>
         </form>
       </section>
