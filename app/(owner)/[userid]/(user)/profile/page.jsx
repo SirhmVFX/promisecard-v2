@@ -27,7 +27,7 @@ const Profile = ({ params }) => {
 
   const handleLogout = () => {
     localStorage.removeItem("user");
-    router.push(`/${user}`);
+    router.push("/signin");
   };
   return (
     <>
