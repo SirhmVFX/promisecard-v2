@@ -108,7 +108,13 @@ const Signin = () => {
                 placeholder="Enter your password"
               />
 
-              <IoIosEyeOff className="text-3xl md:text-4xl text-neutral-500 ml-1 mr-2" />
+              <div onClick={handleVisibility}>
+                {visible ? (
+                  <IoEyeSharp className="text-3xl md:text-4xl text-neutral-500 ml-1 mr-2" />
+                ) : (
+                  <IoEyeOffSharp className="text-3xl md:text-4xl text-neutral-500 ml-1 mr-2" />
+                )}
+              </div>
             </div>
           </div>
           <div className="flex justify-end py-4 ">
