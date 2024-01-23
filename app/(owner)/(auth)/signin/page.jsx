@@ -7,7 +7,6 @@ import { useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import { auth, db } from "@/app/firebase/config";
 import { IoEyeOffSharp, IoEyeSharp } from "react-icons/io5";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/navigation";
 
 const Signin = () => {

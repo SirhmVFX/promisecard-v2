@@ -85,8 +85,8 @@ function SelectGift({ params }) {
 
   return (
     <>
-      <section className="w-full md:w-2/4 p-8 relative h-screen ">
-        <div className="flex justify-between items-center py-4">
+      <section className="w-full md:w-2/4 p-8 relative h-screen flex flex-col items-center ">
+        <div className="flex justify-between items-center py-4 w-full">
           <Link href={"./"}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -128,10 +128,10 @@ function SelectGift({ params }) {
         ) : (
           ""
         )}
-        <div className="py-4">
+        <div className="py-4 w-full">
           <h1 className="text-black">Select Gift Item</h1>
         </div>
-        <div>
+        <div className="w-full">
           {defaultgifts.map((gift) => (
             <div
               key={gift.id}
@@ -150,7 +150,7 @@ function SelectGift({ params }) {
           ))}
         </div>
 
-        <div className="flex gap-2 items-center absolute w-3/4 justify-center bottom-40 z-50">
+        <div className=" mx-auto gap-2 items-center absolute flex w-3/4 justify-center bottom-32 z-50">
           <button
             className={`py-3 w-2/4 rounded-full ${
               clicked ? "bg-[#ffaff2]" : "bg-[#C015A4]"
@@ -166,7 +166,6 @@ function SelectGift({ params }) {
             Add custom Gift
           </Link>
         </div>
-        <div className="mb-48">.</div>
       </section>
     </>
   );

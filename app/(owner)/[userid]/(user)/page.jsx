@@ -126,7 +126,15 @@ function Owner({ params }) {
                     />
                   </svg>
                 </div>
-                <Image src={gift.file} width={80} height={80} alt="gift" />
+                <div className="w-[80px] h-[80px] ">
+                  <Image
+                    src={gift.file}
+                    width={80}
+                    height={80}
+                    alt="gift"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
                 <h1 className="text-black">{gift.name}</h1>
               </div>
             ))}
