@@ -1,7 +1,7 @@
 "use client";
 
 import { FaUserCircle } from "react-icons/fa";
-import { IoIosEyeOff } from "react-icons/io";
+import { IoEyeOffSharp, IoEyeSharp } from "react-icons/io5";
 import { MdOutlineMail } from "react-icons/md";
 
 import { useState } from "react";
@@ -23,10 +23,15 @@ const Signup = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [visible, setVisible] = useState(false);
   const [error, setError] = useState(false);
   const [clicked, setClicked] = useState(false);
   const [signedIn, setSignedIn] = useState(false);
   const router = useRouter();
+
+  const handleVisibility = () => {
+    setVisible(!visible);
+  };
 
   const handleSignUp = async (e) => {
     e.preventDefault();
@@ -123,14 +128,20 @@ const Signup = () => {
               </p>
               <div className="flex border bg-[#F7F3F3] border-gray-300 rounded-2xl justify-between items-center">
                 <input
-                  type="password"
-                  required={true}
+                  type={visible ? "text" : "password"}
+                  required
                   onChange={(e) => setPassword(e.target.value)}
                   className=" bg-transparent py-4 px-3 rounded-2xl w-[90%] text-sm outline-none"
                   placeholder="Enter password"
                 />
 
-                <IoIosEyeOff className="text-3xl md:text-4xl text-neutral-500 ml-1 mr-2" />
+                <div onClick={handleVisibility}>
+                  {visible ? (
+                    <IoEyeSharp className="text-3xl md:text-4xl text-neutral-500 ml-1 mr-2" />
+                  ) : (
+                    <IoEyeOffSharp className="text-3xl md:text-4xl text-neutral-500 ml-1 mr-2" />
+                  )}
+                </div>
               </div>
             </div>
             <div className="mt-12">

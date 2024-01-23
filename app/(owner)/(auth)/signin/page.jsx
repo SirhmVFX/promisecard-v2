@@ -12,10 +12,15 @@ import { useRouter } from "next/navigation";
 const Signin = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [visible, setVisible] = useState(false);
   const [clicked, setClicked] = useState(false);
   const [error, setError] = useState(false);
   const [signedIn, setSignedIn] = useState(false);
   const router = useRouter();
+
+  const handleVisibility = () => {
+    setVisible(!visible);
+  };
 
   const handleSignIn = async (e) => {
     e.preventDefault();
@@ -96,7 +101,7 @@ const Signin = () => {
             </p>
             <div className="flex bg-[#F7F3F3] border border-gray-300 rounded-2xl justify-between items-center">
               <input
-                type="password"
+                type={visible ? "text" : "password"}
                 required={true}
                 onChange={(e) => setPassword(e.target.value)}
                 className="bg-transparent py-4 px-3 rounded-2xl w-[90%] text-sm outline-none"
