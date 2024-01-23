@@ -40,7 +40,7 @@ export const PromisePage = ({ params }) => {
     };
     fetchData();
     console.log(promiseGift);
-  }, [params.userid, router, promiseGift]);
+  }, [params.userid, router]);
 
   const [addedStatus, setAddedStatus] = useState(() => {
     const savedAddedStatus =

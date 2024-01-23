@@ -104,7 +104,7 @@ const Customgift = ({ params }) => {
         setAdded(true);
         setTimeout(() => {
           router.push(`/${params.userid}`);
-        });
+        }, 1000);
 
         // Redirect to the home page or any other desired page
         // router.push("/");
