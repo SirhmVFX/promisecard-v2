@@ -85,7 +85,7 @@ function SelectGift({ params }) {
 
   return (
     <>
-      <section className="w-full md:w-2/4 p-8 relative h-screen">
+      <section className="w-full md:w-2/4 p-8 relative h-screen ">
         <div className="flex justify-between items-center py-4">
           <Link href={"./"}>
             <svg
@@ -166,6 +166,7 @@ function SelectGift({ params }) {
             Add custom Gift
           </Link>
         </div>
+        <div className="mb-48">.</div>
       </section>
     </>
   );

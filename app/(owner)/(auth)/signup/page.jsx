@@ -46,11 +46,17 @@ const Signup = () => {
           timeStamp: serverTimestamp(),
         });
 
+        const currentUser = {
+          username,
+          email,
+        };
+        localStorage.setItem("user", JSON.stringify(currentUser));
+
         console.log(res);
         setSignedIn(true);
         setTimeout(() => {
-          router.push("/signin");
-        }, 3000);
+          router.push(`/${username}`);
+        }, 2000);
       }
     } catch (error) {
       console.log(error);
