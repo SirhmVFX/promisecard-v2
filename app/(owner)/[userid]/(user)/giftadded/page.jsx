@@ -11,8 +11,9 @@ function GiftAdded({ params }) {
         `https://promisecard.netlify.app/${params.userid}/promiseme`
       );
       setIsCopied(true);
+
       setTimeout(() => {
-        isCopied(false);
+        setIsCopied(false);
       }, 1500);
     } catch (error) {
       console.log(error);
@@ -20,7 +21,7 @@ function GiftAdded({ params }) {
   };
   return (
     <>
-      <section className="w-full md:w-2/4 mx-auto flex flex-col gap-10 text-black p-6">
+      <section className="w-full md:w-2/4 mx-auto flex flex-col gap-10 text-black p-4">
         <div className="flex flex-col items-center pt-32 gap-6">
           <h1 className="font-bold text-4xl">Gift Added</h1>
           <Link
