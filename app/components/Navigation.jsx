@@ -22,7 +22,7 @@ const Navigation = () => {
     console.log(currentUser);
   }, [router, currentUser]);
   return (
-    <div className="flex justify-around bg-[#F5F5F5] text-black w-full absolute bottom-0 ">
+    <div className="flex justify-around bg-[#F5F5F5] text-black w-full bottom-0 fixed ">
       <Link
         href={`/${currentUser}`}
         className="flex flex-col items-center p-4 text-primary font-bold"
