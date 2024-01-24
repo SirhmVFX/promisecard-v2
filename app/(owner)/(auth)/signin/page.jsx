@@ -48,7 +48,7 @@ const Signin = () => {
 
           setTimeout(() => {
             router.push(`/${username}`);
-          }, 3000);
+          }, 1500);
         } else {
           setError(true);
         }

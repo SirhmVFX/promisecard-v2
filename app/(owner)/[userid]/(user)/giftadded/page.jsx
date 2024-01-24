@@ -54,7 +54,7 @@ function GiftAdded({ params }) {
           </p>
 
           <div className="flex items-center bg-[#F7F3F3] rounded-lg justify-between border p-3">
-            <p className="ps-4">{`https://promisecard.netlify.app/${params.userid}/promiseme`}</p>
+            <p className="ps-4">{`promisecard.netlify.app/${params.userid}/promiseme`}</p>
           </div>
           <div className="flex w-full justify-center items-center gap-4 mt-4 ">
             <button

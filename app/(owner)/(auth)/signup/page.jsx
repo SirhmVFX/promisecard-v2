@@ -61,7 +61,7 @@ const Signup = () => {
         setSignedIn(true);
         setTimeout(() => {
           router.push(`/${username}`);
-        }, 2000);
+        }, 1500);
       }
     } catch (error) {
       console.log(error);

@@ -70,7 +70,7 @@ function SelectGift({ params }) {
 
           setTimeout(() => {
             router.push("giftadded");
-          }, 3000);
+          }, 1500);
         } else {
           // docSnap.data() will be undefined in this case
           console.log("No such document!");

@@ -55,7 +55,7 @@ const Give = ({ params }) => {
 
         setTimeout(() => {
           router.push(`/${params.userid}/gifted`);
-        }, 2000);
+        }, 1500);
       } catch (error) {
         console.log(error);
         setError(false);
