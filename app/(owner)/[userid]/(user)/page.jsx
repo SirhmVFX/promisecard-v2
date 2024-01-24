@@ -56,25 +56,17 @@ function Owner({ params }) {
       // Remove from local storage
       const existingSelectedGifts =
         JSON.parse(localStorage.getItem("usergifts")) || [];
-      const indexToRemove = existingSelectedGifts.findIndex(
-        (gift) => gift.id === theGift.id
+      const updatedSelectedGifts = existingSelectedGifts.filter(
+        (gift) => gift.id !== theGift.id
       );
 
-      if (indexToRemove !== -1) {
-        existingSelectedGifts.splice(indexToRemove, 1);
+      localStorage.setItem("usergifts", JSON.stringify(updatedSelectedGifts));
 
-        localStorage.setItem(
-          "usergifts",
-          JSON.stringify(existingSelectedGifts)
-        );
+      const addedStatus = JSON.parse(localStorage.getItem("addedStatus")) || {};
+      addedStatus[theGift.id] = false;
+      localStorage.setItem("addedStatus", JSON.stringify(addedStatus));
 
-        const addedStatus =
-          JSON.parse(localStorage.getItem("addedStatus")) || {};
-        addedStatus[theGift.id] = false;
-        localStorage.setItem("addedStatus", JSON.stringify(addedStatus));
-
-        setGiftitems(existingSelectedGifts);
-      }
+      setGiftitems(updatedSelectedGifts);
 
       // Remove from Firestore
       const currentUser = JSON.parse(localStorage.getItem("user"));
@@ -96,12 +88,12 @@ function Owner({ params }) {
 
             // Update the Firestore document
             await setDoc(docRefGifts, { gifft: updatedGifts }, { merge: true });
+
+            // Reload the page after updating Firestore
+            router.reload();
           }
         }
       }
-
-      // Close the modal after removing the gift
-      handleHideModal();
     } catch (error) {
       console.log(error);
     }
