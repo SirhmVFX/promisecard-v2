@@ -83,6 +83,18 @@ function SelectGift({ params }) {
     }
   };
 
+  const handleCancel = () => {
+    // Deselect all selected gifts
+    localStorage.removeItem("usergifts");
+    localStorage.removeItem("addedStatus");
+    setAddedStatus({}); // Set addedStatus to an empty object
+
+    // You may also want to update the UI to reflect the deselection
+    setClicked(false); // Reset the clicked state
+
+    // Add any additional cleanup code or state updates as needed
+  };
+
   return (
     <>
       <section className="w-full md:w-2/4 p-8 relative h-screen flex flex-col items-center ">
@@ -106,9 +118,9 @@ function SelectGift({ params }) {
             </svg>
           </Link>
 
-          <Link className="text-[#C015A4]" href={"./"}>
+          <button className="text-[#C015A4]" onClick={handleCancel}>
             Cancel
-          </Link>
+          </button>
         </div>
 
         {added ? (

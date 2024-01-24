@@ -123,7 +123,7 @@ const Profile = ({ params }) => {
             </div>
             <div className="flex justify-between  flex-col p-4 bg-[#F7F3F3] border rounded-2xl mb-4">
               <p className="text-black">
-                {`https://promisecard.netlify.app/${params.userid}/promiseme`}
+                {`promisecard.netlify.app/${params.userid}/promiseme`}
               </p>
             </div>
 
