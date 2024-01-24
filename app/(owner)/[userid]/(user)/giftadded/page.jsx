@@ -9,7 +9,8 @@ function GiftAdded({ params }) {
   const share = () => {
     if (navigator.share) {
       navigator.share({
-        title: "Promise Card",
+        title:
+          "Unlock the magic of a Promise Card – Share a special commitment with me. Click the link below to make a promise:",
         url: `https://promisecard.netlify.app/${params.userid}/promiseme`,
         text: "Promise me ",
       });
@@ -52,19 +53,19 @@ function GiftAdded({ params }) {
             your profile
           </p>
 
-          <div className="flex items-center bg-[#F7F3F3] rounded-lg justify-between border">
+          <div className="flex items-center bg-[#F7F3F3] rounded-lg justify-between border p-3">
             <p className="ps-4">{`https://promisecard.netlify.app/${params.userid}/promiseme`}</p>
+          </div>
+          <div className="flex w-full justify-center items-center gap-4 mt-4 ">
             <button
-              className="text-[#C015a4] border-s py-3 px-6 "
+              className="text-[#C015a4] border rounded-full py-2 px-6 "
               onClick={copytext}
             >
               {isCopied ? "✅Copied" : "Copy"}
             </button>
-          </div>
-          <div className="flex w-full justify-center">
             <button
               onClick={share}
-              className="border border-[#c015a4] py-2 px-8 text-[#c015a4] mt-4 rounded-full"
+              className="border border-[#c015a4] py-2 px-8 text-[#c015a4] rounded-full"
             >
               Share
             </button>
