@@ -83,6 +83,12 @@ function SelectGift({ params }) {
     }
   };
 
+  const [showModal, setShowModal] = useState(true);
+
+  const modal = () => {
+    setShowModal(true);
+  };
+
   const handleCancel = () => {
     // Deselect all selected gifts
     localStorage.removeItem("usergifts");
@@ -91,6 +97,7 @@ function SelectGift({ params }) {
 
     // You may also want to update the UI to reflect the deselection
     setClicked(false); // Reset the clicked state
+    setShowModal(false);
 
     // Add any additional cleanup code or state updates as needed
   };
@@ -98,7 +105,32 @@ function SelectGift({ params }) {
   return (
     <>
       <section className="w-full md:w-2/4 p-8 relative h-screen flex flex-col items-center ">
-        <div className="flex justify-between items-center py-4 w-full">
+        <div className="flex justify-between items-center py-4 w-full ">
+          {showModal ? (
+            <div className="absolute bg-[#0000005e] backdrop-blur-sm p-8 left-0 top-0 right-0 bottom-0 z-50 flex justify-center items-center">
+              <div className="bg-white p-8 rounded-2xl flex flex-col gap-8">
+                <p className="text-black text-center">
+                  Do you want to unselect all the gifts you've selected?
+                </p>
+                <div className="flex items-center gap-2 justify-center">
+                  <button
+                    onClick={modal}
+                    className="bg-gray-50 text-black px-3 py-2 rounded-full"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={handleCancel}
+                    className="bg-[#c015a4] py-2 px-4 rounded-full"
+                  >
+                    Yes, Unselect
+                  </button>
+                </div>
+              </div>
+            </div>
+          ) : (
+            ""
+          )}
           <Link href={"./"}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -118,7 +150,7 @@ function SelectGift({ params }) {
             </svg>
           </Link>
 
-          <button className="text-[#C015A4]" onClick={handleCancel}>
+          <button className="text-[#C015A4]" onClick={modal}>
             Cancel
           </button>
         </div>
@@ -162,7 +194,7 @@ function SelectGift({ params }) {
           ))}
         </div>
 
-        <div className=" mx-auto gap-2 items-center absolute flex w-3/4 justify-center bottom-32 z-50">
+        <div className=" mx-auto gap-2 items-center absolute flex w-3/4 justify-center bottom-32 z-10">
           <button
             className={`py-3 w-2/4 rounded-full ${
               clicked ? "bg-[#ffaff2]" : "bg-[#C015A4]"
