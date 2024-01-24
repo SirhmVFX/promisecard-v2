@@ -12,7 +12,7 @@ function GiftAdded({ params }) {
         title:
           "Unlock the magic of a Promise Card – Share a special commitment with me. Click the link below to make a promise:",
         url: `https://promisecard.netlify.app/${params.userid}/promiseme`,
-        text: "Promise me ",
+        text: "Unlock the magic of a Promise Card – Share a special commitment with me. Click the link below to make a promise: ",
       });
     } else {
       navigator.clipboard.writeText(
