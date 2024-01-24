@@ -115,9 +115,11 @@ function Owner({ params }) {
                 } p-4 flex flex-col items-center rounded-lg `}
               >
                 {selectedGift === gift ? (
-                  <div className="absolute bg-[#0000005e] backdrop-blur-sm bottom-0 top-0  left-0 right-0 z-50 flex justify-center items-center">
+                  <div className="absolute bg-[#0000005e] backdrop-blur-sm bottom-0 top-0 p-8 left-0 right-0 z-50 flex justify-center items-center">
                     <div className=" bg-white p-8 rounded-2xl flex flex-col gap-8">
-                      <p>Do you want to delete this gift?</p>
+                      <p className="text-black text-center">
+                        Do you want to delete this gift?
+                      </p>
                       <div className="flex flex-col items-center gap">
                         <div className="w-[50px] h-[50px] ">
                           <Image

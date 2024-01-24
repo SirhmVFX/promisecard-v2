@@ -83,7 +83,7 @@ function SelectGift({ params }) {
     }
   };
 
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
 
   const modal = () => {
     setShowModal(true);
