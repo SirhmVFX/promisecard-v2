@@ -6,6 +6,7 @@ import Link from "next/link";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { db, storage } from "@/app/firebase/config";
+import Image from "next/image";
 
 const Customgift = ({ params }) => {
   const router = useRouter();
@@ -105,9 +106,6 @@ const Customgift = ({ params }) => {
         setTimeout(() => {
           router.push(`/${params.userid}`);
         }, 1000);
-
-        // Redirect to the home page or any other desired page
-        // router.push("/");
       }
     } catch (error) {
       console.error("Error adding custom gift:", error);
@@ -115,6 +113,13 @@ const Customgift = ({ params }) => {
     }
   };
 
+  const handleClear = () => {
+    setGiftName("");
+    const fileInput = document.getElementById("fileInput");
+    if (fileInput) {
+      fileInput.value = ""; // Clear the file input value
+    }
+  };
   return (
     <>
       <section className=" p-4 md:w-2/4 mx-auto">
@@ -138,12 +143,9 @@ const Customgift = ({ params }) => {
             </svg>
           </Link>
 
-          <Link
-            href={`/${params.userid}`}
-            className="text-[#C015A4] font-bold "
-          >
+          <button onClick={handleClear} className="text-[#C015A4] font-bold ">
             Cancel
-          </Link>
+          </button>
         </div>
 
         {added ? (
@@ -171,7 +173,7 @@ const Customgift = ({ params }) => {
           ""
         )}
 
-        <div className="pt-20">
+        <div className="pt-4">
           <form className="flex flex-col py-4" onSubmit={handleAddGift}>
             <label htmlFor="" className="text-black pb-4">
               Gift name <span className="text-primary font-bold">*</span>
@@ -179,6 +181,7 @@ const Customgift = ({ params }) => {
             <input
               type="text"
               required={true}
+              value={giftName}
               onChange={(e) => setGiftName(e.target.value)}
               className="bg-[#F7F3F3] border rounded-2xl p-4 text-black outline-none"
             />
@@ -186,15 +189,27 @@ const Customgift = ({ params }) => {
               <input
                 type="file"
                 name=""
-                id=""
                 onChange={(e) => setFile(e.target.files[0])}
                 className="file:bg-[#C015A40D]  my-4 text-black file:border-3 file:border-[#C015A4] file:rounded-2xl file:p-8 file:border-dashed "
               />
             </div>
             {uploading ? (
-              <p className="text-black my-4">
-                Uploading product, please wait...
-              </p>
+              <div className="flex items-center">
+                <p className="text-[#c015a4] font-bold">
+                  Uploading product, please wait
+                </p>
+                <div className="w-[40px] h-[60px]">
+                  <Image
+                    src={
+                      "https://firebasestorage.googleapis.com/v0/b/promisecard-3eb90.appspot.com/o/0_4Gzjgh9Y7Gu8KEtZ.gif?alt=media&token=733d3a86-c13e-4d8d-8e8c-2bde816d4298"
+                    }
+                    alt="loading"
+                    height={50}
+                    width={50}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
             ) : (
               ""
             )}
