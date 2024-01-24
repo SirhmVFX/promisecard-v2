@@ -110,7 +110,7 @@ const Profile = ({ params }) => {
             <div className="flex justify-between p-4 bg-[#F7F3F3] border rounded-2xl mb-4">
               <input
                 type="text"
-                placeholder={`https://promisecard/${params.userid}/promiseme`}
+                placeholder={`https://promisecard.netlify.app/${params.userid}/promiseme`}
                 className="outline-none text-black bg-transparent w-full"
               />
             </div>

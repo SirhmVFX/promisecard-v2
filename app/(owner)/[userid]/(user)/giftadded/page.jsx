@@ -24,7 +24,7 @@ function GiftAdded({ params }) {
             <input
               type="text"
               className="bg-transparent w-[90%]"
-              placeholder={`https://promisecard/${params.userid}/promiseme`}
+              placeholder={`https://promisecard.netlify.app/${params.userid}/promiseme`}
             />
             <button className="text-[#C015a4]">Copy</button>
           </div>
