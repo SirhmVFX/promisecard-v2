@@ -147,7 +147,10 @@ const Changepassword = () => {
 
           <div className="flex flex-wrap pt-20 justify-center gap-2">
             <p className="text-black text-lg">Have any sugesstion/report?</p>
-            <Link href="#" className="text-primary text-lg">
+            <Link
+              href="https://docs.google.com/forms/d/e/1FAIpQLSf56cGUTHNeLiVvv448Q5vn3OMP-RiyXiWHQjaXA5um7E9OdA/viewform"
+              className="text-primary text-lg"
+            >
               Send here
             </Link>
           </div>
