@@ -39,8 +39,11 @@ function GiftAdded({ params }) {
 
           <div className="flex items-center bg-[#F7F3F3] rounded-lg justify-between border">
             <p className="ps-4">{`https://promisecard.netlify.app/${params.userid}/promiseme`}</p>
-            <button className="text-[#C015a4] border-s p-3" onClick={copytext}>
-              {isCopied ? "✅ Copied" : "Copy"}
+            <button
+              className="text-[#C015a4] border-s py-3 px-6 "
+              onClick={copytext}
+            >
+              {isCopied ? "✅Copied" : "Copy"}
             </button>
           </div>
           <div className="flex w-full justify-center">
