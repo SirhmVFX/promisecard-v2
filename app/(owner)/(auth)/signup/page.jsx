@@ -95,7 +95,8 @@ const Signup = () => {
           <form onSubmit={handleSignUp}>
             <div className="flex flex-col text-black">
               <p className={` my-4`}>
-                Username <span className="text-[#C015A4] text-lg">*</span>
+                Choose a unique Username
+                <span className="text-[#C015A4] text-lg">*</span>
               </p>
               <div className="flex border bg-[#F7F3F3] border-gray-300 rounded-2xl justify-between items-center">
                 <input

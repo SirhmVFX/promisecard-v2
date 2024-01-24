@@ -5,6 +5,20 @@ import { useState } from "react";
 
 function GiftAdded({ params }) {
   const [isCopied, setIsCopied] = useState(false);
+
+  const share = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: "Promise Card",
+        url: `https://promisecard.netlify.app/${params.userid}/promiseme`,
+        text: "Promise me ",
+      });
+    } else {
+      navigator.clipboard.writeText(
+        `https://promisecard.netlify.app/${params.userid}/promiseme`
+      );
+    }
+  };
   const copytext = async () => {
     try {
       await navigator.clipboard.writeText(
@@ -48,7 +62,10 @@ function GiftAdded({ params }) {
             </button>
           </div>
           <div className="flex w-full justify-center">
-            <button className="border border-[#c015a4] py-2 px-8 text-[#c015a4] mt-4 rounded-full">
+            <button
+              onClick={share}
+              className="border border-[#c015a4] py-2 px-8 text-[#c015a4] mt-4 rounded-full"
+            >
               Share
             </button>
           </div>
