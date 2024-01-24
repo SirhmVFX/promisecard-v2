@@ -8,6 +8,20 @@ import { db } from "@/app/firebase/config";
 import { useRouter } from "next/navigation";
 
 const Profile = ({ params }) => {
+  const [isCopied, setIsCopied] = useState(false);
+  const copytext = async () => {
+    try {
+      await navigator.clipboard.writeText(
+        `https://promisecard.netlify.app/${params.userid}/promiseme`
+      );
+      setIsCopied(true);
+      setTimeout(() => {
+        isCopied(false);
+      }, 1500);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const user = params.userid;
   const router = useRouter();
 
@@ -108,14 +122,16 @@ const Profile = ({ params }) => {
               </div>
             </div>
             <div className="flex justify-between  flex-col p-4 bg-[#F7F3F3] border rounded-2xl mb-4">
-              <div>
-                <p className="text-black">
-                  {`https://promisecard.netlify.app/${params.userid}/promiseme`}
-                </p>
-              </div>
+              <p className="text-black">
+                {`https://promisecard.netlify.app/${params.userid}/promiseme`}
+              </p>
             </div>
-            <button className="bg-[#c015a4] w-full p-2 rounded-full">
-              Copy
+
+            <button
+              className="bg-[#c015a4] w-full p-2 rounded-full"
+              onClick={copytext}
+            >
+              {isCopied ? "✅ Copied" : "Copy"}
             </button>
           </form>
 
