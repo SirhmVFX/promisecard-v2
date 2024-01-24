@@ -1,6 +1,21 @@
 import Link from "next/link";
+import { useState } from "react";
 
 function GiftAdded({ params }) {
+  const [isCopied, setIsCopied] = useState(false);
+  const copytext = async () => {
+    try {
+      await navigator.clipboard.writeText(
+        `https://promisecard.netlify.app/${params.userid}/promiseme`
+      );
+      setIsCopied(true);
+      setTimeout(() => {
+        isCopied(false);
+      }, 1500);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       <section className="w-full md:w-2/4 mx-auto flex flex-col gap-10 text-black p-6">
@@ -22,7 +37,9 @@ function GiftAdded({ params }) {
 
           <div className="flex items-center bg-[#F7F3F3] rounded-lg justify-between border">
             <p className="ps-4">{`https://promisecard.netlify.app/${params.userid}/promiseme`}</p>
-            <button className="text-[#C015a4] border-s p-3">Copy</button>
+            <button className="text-[#C015a4] border-s p-3" onClick={copytext}>
+              {isCopied ? "✅ Copied" : "Copy"}
+            </button>
           </div>
           <div className="flex w-full justify-center">
             <button className="border border-[#c015a4] py-2 px-8 text-[#c015a4] mt-4 rounded-full">
