@@ -84,7 +84,7 @@ export const PromisePage = ({ params }) => {
     <>
       <section className="  p-2 flex flex-col w-full md:w-3/4 mx-auto items-center bg-[#FFFDFA] h-screen relative">
         <div className="py-14 text-center">
-          <h1 className="text-4xl font-semibold text-black font-heading">
+          <h1 className="text-4xl font-semibold text-black font-he">
             Promise Card
           </h1>
 
