@@ -107,14 +107,16 @@ const Profile = ({ params }) => {
                 means the world! 🎁✨
               </div>
             </div>
-            <div className="flex justify-between p-4 bg-[#F7F3F3] border rounded-2xl mb-4">
+            <div className="flex justify-between  flex-col p-4 bg-[#F7F3F3] border rounded-2xl mb-4">
               <div>
                 <p className="text-black">
                   {`https://promisecard.netlify.app/${params.userid}/promiseme`}
                 </p>
               </div>
             </div>
-            <button>Copy</button>
+            <button className="bg-[#c015a4] w-full p-2 rounded-full">
+              Copy
+            </button>
           </form>
 
           <button onClick={handleLogout} className="flex text-black mt-16">

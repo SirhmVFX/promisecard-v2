@@ -20,13 +20,14 @@ function GiftAdded({ params }) {
             your profile
           </p>
 
-          <div className="flex p-2 bg-[#F7F3F3] rounded-lg justify-between">
-            <input
-              type="text"
-              className="bg-transparent w-[90%]"
-              placeholder={`https://promisecard.netlify.app/${params.userid}/promiseme`}
-            />
-            <button className="text-[#C015a4]">Copy</button>
+          <div className="flex items-center bg-[#F7F3F3] rounded-lg justify-between border">
+            <p className="ps-4">{`https://promisecard.netlify.app/${params.userid}/promiseme`}</p>
+            <button className="text-[#C015a4] border-s p-3">Copy</button>
+          </div>
+          <div className="flex w-full justify-center">
+            <button className="border border-[#c015a4] py-2 px-8 text-[#c015a4] mt-4 rounded-full">
+              Share
+            </button>
           </div>
         </div>
       </section>
