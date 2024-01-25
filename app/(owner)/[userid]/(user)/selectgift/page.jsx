@@ -110,7 +110,7 @@ function SelectGift({ params }) {
             <div className="absolute bg-[#0000005e] backdrop-blur-sm p-8 left-0 top-0 right-0 bottom-0 z-50 flex justify-center items-center">
               <div className="bg-white p-8 rounded-2xl flex flex-col gap-8">
                 <p className="text-black text-center">
-                  Do you want to unselect all the gifts you've selected?
+                  Do you want to unselect all the gifts you&apos;ve selected?
                 </p>
                 <div className="flex items-center gap-2 justify-center">
                   <button
