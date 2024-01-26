@@ -40,15 +40,15 @@ export const PromisePage = ({ params }) => {
     fetchData();
   }, [params.userid, router, promiseGift]);
 
-  const [addedStatus, setAddedStatus] = useState(() => {
-    const savedAddedStatus =
-      JSON.parse(localStorage.getItem("addedStatus")) || {};
-    return savedAddedStatus;
+  const [giftStatus, setgiftStatus] = useState(() => {
+    const savedgiftStatus =
+      JSON.parse(localStorage.getItem("giftStatus")) || {};
+    return savedgiftStatus;
   });
 
   useEffect(() => {
-    localStorage.setItem("addedStatus", JSON.stringify(addedStatus));
-  }, [addedStatus]);
+    localStorage.setItem("giftStatus", JSON.stringify(giftStatus));
+  }, [giftStatus]);
 
   const selectGift = (selectedGift) => {
     const existingSelectedGifts =
@@ -68,9 +68,9 @@ export const PromisePage = ({ params }) => {
       localStorage.setItem("gifts", JSON.stringify(updatedSelectedGifts));
     }
 
-    setAddedStatus((prevAddedStatus) => ({
-      ...prevAddedStatus,
-      [selectedGift.id]: !prevAddedStatus[selectedGift.id],
+    setgiftStatus((prevgiftStatus) => ({
+      ...prevgiftStatus,
+      [selectedGift.id]: !prevgiftStatus[selectedGift.id],
     }));
   };
 
@@ -108,7 +108,7 @@ export const PromisePage = ({ params }) => {
                   <div
                     key={gift.id}
                     className={`${
-                      addedStatus[gift.id]
+                      giftStatus[gift.id]
                         ? `${
                             gift.bg ? gift.bg : "bg-grey-50"
                           } text-black p-4 rounded-lg flex flex-col items-center border-2 border-primary border-[#c015a4]`
