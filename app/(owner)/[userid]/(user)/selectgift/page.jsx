@@ -15,15 +15,15 @@ function SelectGift({ params }) {
   const [error, setError] = useState(false);
   const [added, setAdded] = useState(false);
 
-  const [addedStatus, setAddedStatus] = useState(() => {
-    const savedAddedStatus =
-      JSON.parse(localStorage.getItem("addedStatus")) || {};
-    return savedAddedStatus;
+  const [addedStatuss, setAddedStatuss] = useState(() => {
+    const savedAddedStatuss =
+      JSON.parse(localStorage.getItem("addedStatuss")) || {};
+    return savedAddedStatuss;
   });
 
   useEffect(() => {
-    localStorage.setItem("addedStatus", JSON.stringify(addedStatus));
-  }, [addedStatus]);
+    localStorage.setItem("addedStatuss", JSON.stringify(addedStatuss));
+  }, [addedStatuss]);
 
   const selectGift = (selectedGift) => {
     const existingSelectedGifts =
@@ -44,9 +44,9 @@ function SelectGift({ params }) {
     }
     console.log(selectedGift);
 
-    setAddedStatus((prevAddedStatus) => ({
-      ...prevAddedStatus,
-      [selectedGift.id]: !prevAddedStatus[selectedGift.id],
+    setAddedStatuss((prevAddedStatuss) => ({
+      ...prevAddedStatuss,
+      [selectedGift.id]: !prevAddedStatuss[selectedGift.id],
     }));
   };
 
@@ -92,8 +92,8 @@ function SelectGift({ params }) {
   const handleCancel = () => {
     // Deselect all selected gifts
     localStorage.removeItem("usergifts");
-    localStorage.removeItem("addedStatus");
-    setAddedStatus({}); // Set addedStatus to an empty object
+    localStorage.removeItem("addedStatuss");
+    setAddedStatuss({}); // Set addedStatuss to an empty object
 
     // You may also want to update the UI to reflect the deselection
     setClicked(false); // Reset the clicked state
@@ -180,7 +180,9 @@ function SelectGift({ params }) {
             <div
               key={gift.id}
               className={`flex gap-2 items-center py-4 ${
-                addedStatus[gift.id] ? "border-t border-b border-[#C015a4]" : ""
+                addedStatuss[gift.id]
+                  ? "border-t border-b border-[#C015a4]"
+                  : ""
               }`}
               onClick={() => {
                 selectGift(gift);

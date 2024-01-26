@@ -57,7 +57,6 @@ const Signup = () => {
         };
         localStorage.setItem("user", JSON.stringify(currentUser));
 
-        console.log(res);
         setSignedIn(true);
         setTimeout(() => {
           router.push(`/${username}`);

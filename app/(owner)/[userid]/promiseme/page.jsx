@@ -32,14 +32,12 @@ export const PromisePage = ({ params }) => {
             router.push(`/signin`);
             console.log("Gifts not found");
           }
-          console.log(promiseGift);
         } catch (error) {
           console.error("Error fetching gifts:", error);
         }
       }
     };
     fetchData();
-    console.log(promiseGift);
   }, [params.userid, router, promiseGift]);
 
   const [addedStatus, setAddedStatus] = useState(() => {
