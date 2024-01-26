@@ -134,7 +134,7 @@ export const PromisePage = ({ params }) => {
           </div>
         </div>
         <button
-          className="bg-[#c015a4] py-3 px-8 rounded-full absolute bottom-10 "
+          className="bg-[#c015a4] py-3 px-8 rounded-full fixed bottom-20 "
           onClick={handleClick}
         >
           give
