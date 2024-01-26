@@ -163,7 +163,6 @@ const Give = ({ params }) => {
               <input
                 type="date"
                 required
-                placeholder="when boss"
                 onChange={(e) => setDate(e.target.value)}
                 className="outline-none text-black bg-transparent"
               />
