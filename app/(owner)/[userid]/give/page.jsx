@@ -74,6 +74,8 @@ const Give = ({ params }) => {
     setAddedStatus(storedAddedStatus);
   }, []);
 
+  const isMoneySelected = selectedGift.some((gift) => gift.type === "money");
+
   const handleCancel = (giftId) => {
     const updatedSelectedGifts = selectedGift.filter(
       (gift) => gift.id !== giftId
@@ -283,41 +285,43 @@ const Give = ({ params }) => {
             </div>
           </div>
 
-          <div className="pb-14">
-            <label htmlFor="" className="text-black text-xl font-semibold">
-              Amount
-            </label>
-            <div className="flex gap-2  p-4 bg-[#F7F3F3] border rounded-lg mt-2">
-              <select
-                name=""
-                id=""
-                onChange={(e) => setCurrency(e.target.value)}
-                className="text-black bg-[#E4E2E4] py-2 px-4 rounded-lg  outline-none"
-              >
-                <option className="text-sm" value="NGN">
-                  NGN
-                </option>
-                <option className="text-sm" value="USD">
-                  USD
-                </option>
-                <option className="text-sm" value="EUR">
-                  EUR
-                </option>
-                <option className="text-sm" value="CAD">
-                  CAD
-                </option>
-                <option className="text-sm" value="GBP">
-                  GBP
-                </option>
-              </select>
-              <input
-                type="number"
-                placeholder="How much you go like give me"
-                onChange={(e) => setAmount(e.target.value)}
-                className="outline-none text-black bg-transparent w-full"
-              />
+          {isMoneySelected && (
+            <div className="pb-14">
+              <label htmlFor="" className="text-black text-xl font-semibold">
+                Amount
+              </label>
+              <div className="flex gap-2  p-4 bg-[#F7F3F3] border rounded-lg mt-2">
+                <select
+                  name=""
+                  id=""
+                  onChange={(e) => setCurrency(e.target.value)}
+                  className="text-black bg-[#E4E2E4] py-2 px-4 rounded-lg  outline-none"
+                >
+                  <option className="text-sm" value="NGN">
+                    NGN
+                  </option>
+                  <option className="text-sm" value="USD">
+                    USD
+                  </option>
+                  <option className="text-sm" value="EUR">
+                    EUR
+                  </option>
+                  <option className="text-sm" value="CAD">
+                    CAD
+                  </option>
+                  <option className="text-sm" value="GBP">
+                    GBP
+                  </option>
+                </select>
+                <input
+                  type="number"
+                  placeholder="How much you go like give me"
+                  onChange={(e) => setAmount(e.target.value)}
+                  className="outline-none text-black bg-transparent w-full"
+                />
+              </div>
             </div>
-          </div>
+          )}
           <button
             className={`w-full py-3 rounded-xl  ${
               clicked ? "bg-[#ffaff2]" : "bg-[#c015a4]"
