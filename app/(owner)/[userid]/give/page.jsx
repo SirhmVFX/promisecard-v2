@@ -166,7 +166,7 @@ const Give = ({ params }) => {
                 type="date"
                 required
                 onChange={(e) => setDate(e.target.value)}
-                className="outline-none text-black bg-transparent"
+                className="outline-none text-black w-full bg-transparent"
               />
               <svg
                 xmlns="http://www.w3.org/2000/svg"
