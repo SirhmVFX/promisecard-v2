@@ -166,6 +166,7 @@ const Give = ({ params }) => {
                 type="date"
                 required
                 onChange={(e) => setDate(e.target.value)}
+                placeholder="Please click to choose when"
                 className="outline-none text-black block w-full bg-transparent"
               />
               <svg
